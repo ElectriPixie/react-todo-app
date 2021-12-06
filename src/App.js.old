@@ -1,0 +1,27 @@
+import React, { Component} from "react";
+import {hot} from "react-hot-loader";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import withAuth from './withAuth';
+import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
+import Todo from './Todo';
+import "./App.css";
+
+const App = () => {
+  return(
+    <div styleName="App">
+    <Router>
+      <Link to="/">Todos</Link>
+      <Link to="/login">Login</Link>
+      <Link to="/register">Register</Link>
+      <Switch>
+        <Route exact path="/" component={withAuth(Todo)} />
+        <Route path="/login" component={LoginForm} />
+        <Route path="/register" component={RegisterForm} />
+      </Switch>
+    </Router>
+    </div>
+  );
+}
+
+export default hot(module)(App);
